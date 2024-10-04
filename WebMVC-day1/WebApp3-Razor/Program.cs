@@ -7,7 +7,8 @@ namespace WebApp3_Razor
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddRazorPages();
+            //builder.Services.AddRazorPages();
+            builder.Services.AddRazorPages(props => props.RootDirectory="/Site");
 
             var app = builder.Build();
 
