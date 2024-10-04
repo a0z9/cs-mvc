@@ -74,7 +74,32 @@ namespace WebApp5_controllers.Controllers
 
         }
 
-        [HttpGet]
+
+        public IActionResult Form()
+        {
+            Response.ContentType = "text/html;charset=utf-8";
+            Response.Headers.Append("Institute", "IKIT");
+
+            StringBuilder s = new StringBuilder();
+
+            s.Append( @"
+             <form method='post' action='Student3'>
+             Name: <input type='text' name='Name'><br/>
+             Department: <input type='text' name='Department'><br/>
+             <input type='submit' value='Submit'>
+             </form>");
+
+
+            return Content("<h2>Форма ввода данных студента/Обучение ИКИТ</h2><hr/>" +
+                s.ToString()
+                );
+
+        }
+        
+
+
+            [HttpGet]
+        [HttpPost]
         public IActionResult Student3(Student st)
         {
             
