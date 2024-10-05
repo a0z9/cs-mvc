@@ -98,7 +98,7 @@ namespace WebApp5_controllers.Controllers
         
 
 
-            [HttpGet]
+        [HttpGet]
         [HttpPost]
         public IActionResult Student3(Student st)
         {

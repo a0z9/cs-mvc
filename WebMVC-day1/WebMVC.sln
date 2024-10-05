@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp2", "WebApp2\WebApp2.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp3-Razor", "WebApp3-Razor\WebApp3-Razor.csproj", "{472D9F50-3E8E-4362-A548-8A00FBE63E63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp4-mvc", "WebApp4-mvc\WebApp4-mvc.csproj", "{D5328495-1ABD-4B0F-AF73-4E6BFD316B89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp4-mvc", "WebApp4-mvc\WebApp4-mvc.csproj", "{D5328495-1ABD-4B0F-AF73-4E6BFD316B89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp5-controllers", "WebApp5-controllers\WebApp5-controllers.csproj", "{46ECF19D-3F83-4351-93E2-07DF2CF38F45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp5-controllers", "WebApp5-controllers\WebApp5-controllers.csproj", "{46ECF19D-3F83-4351-93E2-07DF2CF38F45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp6-mvc", "WebApp6-mvc\WebApp6-mvc.csproj", "{A4775C25-0559-4944-8296-9860CC1C75F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{46ECF19D-3F83-4351-93E2-07DF2CF38F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46ECF19D-3F83-4351-93E2-07DF2CF38F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46ECF19D-3F83-4351-93E2-07DF2CF38F45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4775C25-0559-4944-8296-9860CC1C75F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4775C25-0559-4944-8296-9860CC1C75F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4775C25-0559-4944-8296-9860CC1C75F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4775C25-0559-4944-8296-9860CC1C75F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
