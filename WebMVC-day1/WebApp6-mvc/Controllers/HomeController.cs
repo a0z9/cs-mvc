@@ -21,6 +21,23 @@ namespace WebApp6_mvc.Controllers
         
         }
 
+        [Route("status/{id:int?}")]
+        public void status(int? id)
+        {
+            Response.StatusCode = id ?? 500;
+
+        }
+
+
+        public IActionResult PageError(int id) { 
+        
+            if(id == 404) return View("404");
+            ViewData["status_code"] = id;
+            return View();
+
+        }
+
+        //[Route("idx")]
         public IActionResult Index(string id, string name)
         {
             WriteLine($"id:{id} -- name:{name}");
