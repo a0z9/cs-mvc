@@ -5,6 +5,8 @@ using static WebApp7_models.Models.Students;
 using static System.Console;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Extensions.Primitives;
 
 namespace WebApp7_models.Controllers
 {
@@ -39,6 +41,20 @@ namespace WebApp7_models.Controllers
             {
                 sb.Append($"{k}={ModelState[k].RawValue}, state: {ModelState[k].ValidationState.ToString()}\n");
             }
+
+            sb.Append("\n");
+
+            foreach (var d in ModelState)
+            {
+                if(d.Value.ValidationState == ModelValidationState.Invalid)
+                {
+                    sb.Append($"{d.Key}: ");
+                    foreach (var err in d.Value.Errors) sb.Append($"{err.ErrorMessage}, ");
+                    sb.Append("\n");
+                }
+               
+            }
+
             return sb.ToString();
         }
         

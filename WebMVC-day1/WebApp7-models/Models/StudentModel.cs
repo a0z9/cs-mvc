@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace WebApp7_models.Models
 {
@@ -32,14 +33,17 @@ namespace WebApp7_models.Models
         public int Id { get; set; } //id
 
         [BindRequired]
+        [Required]
         public string Email { get; set; } //email
 
         public Role Role { get; set; }
 
         [BindRequired]
+        [Required]
         public string Name { get; set; }
 
         [BindRequired]
+        [Required]
         public string Sname { get; set; }
 
         [BindNever]
