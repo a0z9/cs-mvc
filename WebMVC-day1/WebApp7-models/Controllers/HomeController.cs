@@ -25,17 +25,19 @@ namespace WebApp7_models.Controllers
 
         public IActionResult People() => View();
 
-        public string PeopleAdd(People people)
+        public string PeopleAdd([FromForm] People people)
         {
+            var ctx = HttpContext;
+
             StringBuilder sb = new StringBuilder();
             
             if (ModelState.IsValid) return "model ok";
 
-            sb.Append($"errors: {ModelState.ErrorCount}");
+            sb.Append($"errors: {ModelState.ErrorCount}\n");
 
-            foreach (var item in ModelState.Keys)
+            foreach (var k in ModelState.Keys)
             {
-                sb.Append($"{item} ");
+                sb.Append($"{k}={ModelState[k].RawValue}, state: {ModelState[k].ValidationState.ToString()}\n");
             }
             return sb.ToString();
         }
