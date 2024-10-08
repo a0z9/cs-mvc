@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using WebApp7_models.Models;
 using static WebApp7_models.Models.Students;
 using static System.Console;
+using System.Reflection.Metadata.Ecma335;
+using System.Text;
 
 namespace WebApp7_models.Controllers
 {
@@ -22,6 +24,25 @@ namespace WebApp7_models.Controllers
         }
 
         public IActionResult People() => View();
+
+        public string PeopleAdd(People people)
+        {
+            StringBuilder sb = new StringBuilder();
+            
+            if (ModelState.IsValid) return "model ok";
+
+            sb.Append($"errors: {ModelState.ErrorCount}");
+
+            foreach (var item in ModelState.Keys)
+            {
+                sb.Append($"{item} ");
+            }
+            return sb.ToString();
+        }
+        
+
+
+        
 
         [Route("status/{id?}")]
         public void Status(int? id)

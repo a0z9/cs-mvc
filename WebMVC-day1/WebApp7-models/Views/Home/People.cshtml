@@ -26,11 +26,12 @@
     </p>
     <p>
         <label>Роль:</label><br />
+        <select name="roles">
         @foreach(var role in Resourses.Roles)
         {
-            
+           <option value="@role.Id">@role.Name</option>
         }
-        <input type="date" name="birthDate" />
+        </select>
     </p>
 
  <input type="submit" value="Добавить" />
