@@ -21,11 +21,13 @@ namespace WebApp7_models.Controllers
         
         }
 
-        [Route("status/{id:int?}")]
-        public void status(int? id)
-        {
-            Response.StatusCode = id ?? 500;
+        public IActionResult People() => View();
 
+        [Route("status/{id?}")]
+        public void Status(int? id)
+        {
+            WriteLine($"Status code: {id}");
+            Response.StatusCode = id ?? 500;
         }
 
 

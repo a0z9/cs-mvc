@@ -28,7 +28,7 @@ namespace WebApp7_models.Models
 
     public class People {
 
-        [BindRequired]
+        [BindNever]
         public int Id { get; set; } //id
 
         [BindRequired]

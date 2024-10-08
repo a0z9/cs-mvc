@@ -1,0 +1,38 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Login page";
+}
+
+<h2>Добавить персонал:</h2>
+<form method="post" action="@Url.Action(action: "PeopleAdd")">
+<p>
+    <label>email:</label><br/>
+    <input name="email" />
+ </p>
+ <p>
+    <label>Имя:</label><br />
+    <input name="name" />
+ </p>
+    <p>
+        <label>Фамилия:</label><br />
+        <input name="name" />
+    </p>
+    <p>
+        <label>Дата рождения:</label><br />
+        <input type="date" name="birthDate" />
+    </p>
+    <p>
+        <label>Роль:</label><br />
+        @foreach(var role in Resourses.Roles)
+        {
+            
+        }
+        <input type="date" name="birthDate" />
+    </p>
+
+ <input type="submit" value="Добавить" />
+
+</form>
