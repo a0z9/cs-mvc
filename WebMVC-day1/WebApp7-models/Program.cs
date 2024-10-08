@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 //builder.Services.AddControllersWithViews();
 builder.Services.AddControllersWithViews(
-    opt => opt.ModelBinderProviders.Add(new RolePeopleModelBinderProvider())
+    opt => opt.ModelBinderProviders.Insert(0,new RolePeopleModelBinderProvider())
     );
 
 
