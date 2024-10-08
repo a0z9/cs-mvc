@@ -49,7 +49,7 @@ namespace WebApp7_models.Controllers
                 if(d.Value.ValidationState == ModelValidationState.Invalid)
                 {
                     sb.Append($"{d.Key}: ");
-                    foreach (var err in d.Value.Errors) sb.Append($"{err.ErrorMessage}, ");
+                    foreach (var err in d.Value.Errors) sb.Append($"{err.ErrorMessage} ");
                     sb.Append("\n");
                 }
                
