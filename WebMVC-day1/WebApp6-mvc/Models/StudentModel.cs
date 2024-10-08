@@ -6,10 +6,35 @@ namespace WebApp6_mvc.Models
         string Department = "Phys");
 
 
-    public class Student {
+    public static class Resourses {
+
+    public static List<Role> Roles = new List<Role>() {
+    new Role{Id=1,Name="Abitura"},
+    new Role{Id=2,Name="Student"},
+    new Role{Id=3,Name="Prepod"},
+    new Role{Id=0,Name="Admin"}
+    };
+
+    public static List<People> Peoples = new List<People>();
+
+
+    }
+    
+
+    public class Role { 
+    public int Id { get; set; }
+    public string Name { get; set; }
+    }
+
+    public class People {
 
         [BindRequired]
-        public int Id { get; set; } //email
+        public int Id { get; set; } //id
+
+        [BindRequired]
+        public string Email { get; set; } //email
+
+        public Role Role { get; set; }
 
         [BindRequired]
         public string Name { get; set; }
@@ -19,12 +44,14 @@ namespace WebApp6_mvc.Models
 
         [BindNever]
         public string? Department { get; set; }
-        [BindNever]
-        public DateTime ExamDate {  get; set; }
+
+        [BindRequired]
+        public DateOnly BirthDate {  get; set; }
+
         [BindNever]
         public Guid? InternalId { get; set; }
-        [BindNever]
-        public double? Grade { get; set; }
+        //[BindNever]
+        //public double? Grade { get; set; }
         //...
 
 
