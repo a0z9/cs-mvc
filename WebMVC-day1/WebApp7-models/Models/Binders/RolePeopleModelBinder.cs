@@ -1,0 +1,24 @@
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+
+namespace WebApp7_models.Models.Binders
+{
+    public class RolePeopleModelBinder : IModelBinder
+    {
+
+        public Task BindModelAsync(ModelBindingContext bindingContext)
+        {
+            ValueProviderResult? roleId = bindingContext.ValueProvider.GetValue("role");
+            int id = (roleId is not null) ? int.Parse(roleId?.FirstValue) : 1;
+
+            Role? role = Resourses.Roles.FirstOrDefault<Role>(x=> x.Id == id);
+
+            bindingContext.Result = ModelBindingResult.Success(role);
+
+            return Task.CompletedTask;
+            //throw new NotImplementedException();
+        }
+    }
+
+
+
+}

@@ -1,7 +1,13 @@
+using WebApp7_models.Models.Binders;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+//builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(
+    opt => opt.ModelBinderProviders.Add(new RolePeopleModelBinderProvider())
+    );
+
 
 var app = builder.Build();
 
