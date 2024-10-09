@@ -27,13 +27,16 @@ namespace WebApp7_models.Controllers
 
         public IActionResult People() => View();
 
-        public string PeopleAdd([FromForm] People people)
+        //  public string PeopleAdd([FromForm] People people)
+        public IActionResult PeopleAdd([FromForm] People people)
         {
             var ctx = HttpContext;
 
             StringBuilder sb = new StringBuilder();
-            
-            if (ModelState.IsValid) return "model ok";
+
+            if (ModelState.IsValid) { 
+                _logger.LogInformation("Model people valid!");  
+                return View("Index"); }
 
             sb.Append($"errors: {ModelState.ErrorCount}\n");
 
@@ -54,8 +57,10 @@ namespace WebApp7_models.Controllers
                 }
                
             }
+            _logger.LogInformation(sb.ToString());
+            return View("People", people);
 
-            return sb.ToString();
+            //return sb.ToString();
         }
         
 

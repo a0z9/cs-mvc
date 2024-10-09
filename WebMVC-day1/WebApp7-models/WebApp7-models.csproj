@@ -7,4 +7,11 @@
     <RootNamespace>WebApp7_models</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Home\People - Copy.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
