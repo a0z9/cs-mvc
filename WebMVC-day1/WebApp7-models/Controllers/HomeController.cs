@@ -19,6 +19,7 @@ namespace WebApp7_models.Controllers
             _logger = logger;
         }
 
+
         public void Err() {
             int a = 1;
             int b = 1 / (a - 1);
@@ -30,8 +31,15 @@ namespace WebApp7_models.Controllers
             if (email == "admin@ikit.ru") return Json(false);
             return Json(true);
         }
+            
 
-        public IActionResult People() => View();
+        public IActionResult AgeCheck(DateOnly BirthDate)
+        {
+         
+         return Json( BirthDate <= Models.People.YOUNG && BirthDate >= Models.People.OLD);
+         }
+
+    public IActionResult People() => View();
 
         //  public string PeopleAdd([FromForm] People people)
         public IActionResult PeopleAdd([FromForm] People people)
@@ -68,9 +76,6 @@ namespace WebApp7_models.Controllers
 
             //return sb.ToString();
         }
-        
-
-
         
 
         [Route("status/{id?}")]

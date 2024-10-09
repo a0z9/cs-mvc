@@ -10,8 +10,7 @@
 
 <h2>Добавить персонал:</h2>
 <form method="post" action="@Url.Action(action: "PeopleAdd")">
- <div asp-validation-summary="All"></div>
-
+ 
 <p>
     <label>email:</label><br/>
     <input asp-for="Email" />
@@ -24,11 +23,12 @@
  </p>
     <p>
      <label>Фамилия:</label><br />
-     <input name="sname" />
+        <input asp-for="Sname" />
+        <span asp-validation-for="Sname" />
     </p>
     <p>
         <label>Дата рождения:</label><br />
-        <input type="date" asp-for="BirthDate" />
+        <input type="date" asp-for="BirthDate" min="@People.OLD.ToString(format:"yyyy-MM-dd")" max="@People.YOUNG.ToString(format:"yyyy-MM-dd")" />
         <span asp-validation-for="BirthDate" />
     </p>
     <p>
@@ -42,8 +42,22 @@
     </p>
 
  <input type="submit" value="Добавить" />
+ <div asp-validation-summary="All"></div>
 
 </form>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $.validator.addMethod("tolong",
+        function (value, element, parameters) {
+            const size = element.getAttribute('n-size');
+            console.log(element);
+            return value.length <= parseInt(size);
+        });
+
+    $.validator.unobtrusive.adapters.add("tolong", [], function (options) {
+        options.rules.tolong = {};
+        options.messages["tolong"] = options.message;
+    });
+</script>
