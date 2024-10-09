@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using WebApp7_models.Utils;
 
 namespace WebApp7_models.Models
 {
@@ -40,10 +41,13 @@ namespace WebApp7_models.Models
         [Remote(action:"EmailCheck",controller:"Home",ErrorMessage="Адрес уже используется")]
         public string Email { get; set; } //email
 
+
         public Role Role { get; set; }
 
         [BindRequired]
         [Required]
+        //[NameValidation(15,ErrorMessage ="Имя слишком длинное")]
+        [StringLength(maximumLength:15, ErrorMessage = "Имя слишком длинное")]
         public string Name { get; set; }
 
         [BindRequired]
@@ -54,6 +58,8 @@ namespace WebApp7_models.Models
         public string? Department { get; set; }
 
         [BindRequired]
+        [Required]
+        [AgeValidation(maxAge:100, minAge:18, ErrorMessage = "Неверный возраст")]
         public DateOnly BirthDate {  get; set; }
 
         [BindNever]
