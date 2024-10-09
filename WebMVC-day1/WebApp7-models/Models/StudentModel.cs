@@ -37,6 +37,7 @@ namespace WebApp7_models.Models
         [Required(ErrorMessage ="Не указана электронная почта")]
         [RegularExpression(@"[a-zA-Z0-9._\-%+]+@[a-zA-Z0-9._\-%+]+\.[a-zA-Z]{2,}", 
             ErrorMessage = "Неправильный адрес")]
+        [Remote(action:"EmailCheck",controller:"Home",ErrorMessage="Адрес уже используется")]
         public string Email { get; set; } //email
 
         public Role Role { get; set; }

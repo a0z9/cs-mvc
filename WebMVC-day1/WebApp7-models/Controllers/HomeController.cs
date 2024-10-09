@@ -25,6 +25,12 @@ namespace WebApp7_models.Controllers
         
         }
 
+        public IActionResult EmailCheck(string email) {
+            
+            if (email == "admin@ikit.ru") return Json(false);
+            return Json(true);
+        }
+
         public IActionResult People() => View();
 
         //  public string PeopleAdd([FromForm] People people)
