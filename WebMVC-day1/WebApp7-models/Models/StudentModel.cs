@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace WebApp7_models.Models
@@ -33,7 +34,9 @@ namespace WebApp7_models.Models
         public int Id { get; set; } //id
 
         [BindRequired]
-        [Required]
+        [Required(ErrorMessage ="Не указана электронная почта")]
+        [RegularExpression(@"[a-zA-Z0-9._\-%+]+@[a-zA-Z0-9._\-%+]+\.[a-zA-Z]{2,}", 
+            ErrorMessage = "Неправильный адрес")]
         public string Email { get; set; } //email
 
         public Role Role { get; set; }
