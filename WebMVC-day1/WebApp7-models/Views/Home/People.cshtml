@@ -1,4 +1,5 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@using WebApp7_models.Utils
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model People
 
 @*
@@ -33,18 +34,21 @@
     </p>
     <p>
         <label>Роль:</label><br />
-        <select name="role">
+        @Html.RoleSelector(Resourses.Roles)
+
+      @*   <select name="role">
         @foreach(var role in Resourses.Roles)
         {
            <option value="@role.Id">@role.Name</option>
         }
-        </select>
+        </select> *@
     </p>
  @Html.AntiForgeryToken()
  <input type="submit" value="Добавить" />
  <div asp-validation-summary="All"></div>
-
+ @* @Html.RolesHelper(Resourses.Roles) *@
 </form>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

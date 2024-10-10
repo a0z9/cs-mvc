@@ -10,6 +10,8 @@
 
 <h1>Список сотрудников и студентов</h1>
 
+
+
 <p>
     <a asp-action="People" asp-controller="Home" >Добавить</a>
 </p>
@@ -18,6 +20,7 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
@@ -32,7 +35,7 @@
                 @Html.DisplayNameFor(model => model.Department)
             </th> *@
             <th>
-                @Html.DisplayNameFor(model => model.Role.Name)
+                @Html.DisplayNameFor(model => model.Role)
             </th>
             <th></th>
         </tr>

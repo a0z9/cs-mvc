@@ -8,6 +8,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Primitives;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebApp7_models.Controllers
 {
@@ -63,6 +64,7 @@ namespace WebApp7_models.Controllers
                     id = Models.Peoples.Increment();
                 }
 
+                
                 people.Id = (int)id;
 
                 peoples.Add(people);
