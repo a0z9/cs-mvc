@@ -9,8 +9,8 @@
 }
 
 <h2>Добавить персонал:</h2>
-<form method="post" action="@Url.Action(action: "PeopleAdd")">
- 
+@*  <form method="post" action="@Url.Action(action: "PeopleAdd")"> *@
+<form method="post" asp-action="PeopleAdd" asp-controller="Home">
 <p>
     <label>email:</label><br/>
     <input asp-for="Email" />
@@ -40,7 +40,7 @@
         }
         </select>
     </p>
-
+ @Html.AntiForgeryToken()
  <input type="submit" value="Добавить" />
  <div asp-validation-summary="All"></div>
 

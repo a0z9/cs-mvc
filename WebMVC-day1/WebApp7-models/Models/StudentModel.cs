@@ -20,7 +20,6 @@ namespace WebApp7_models.Models
 
     public static List<People> Peoples = new List<People>();
 
-
     }
     
 
@@ -42,7 +41,6 @@ namespace WebApp7_models.Models
 
         public static readonly DateOnly OLD = today.AddYears(-MAX_AGE),
                                YOUNG = today.AddYears(-MIN_AGE);
-
         public const int NameSize = 15;
         public const int SNameSize = 20;
        // public readonly static string SNameError = $"Фамилия слишком длинная {SNameSize}";
@@ -55,6 +53,10 @@ namespace WebApp7_models.Models
         public string Email { get; set; } //email
 
 
+
+
+        [BindRequired]
+        [Required]
         public Role Role { get; set; }
 
         [BindRequired]
@@ -86,8 +88,18 @@ namespace WebApp7_models.Models
 
     }
 
+
+    public static class Peoples
+    {
+        private static uint id = 0;
+        public static uint Increment() => ++id;
+        public static List<People> peoples = new List<People>();
+    }
+
+
     public static class Students
     { 
+   
       public static List<StudentModel> students =
             new List<StudentModel>() { 
       new  StudentModel(Id:"Andrei",Password:"111","7"),

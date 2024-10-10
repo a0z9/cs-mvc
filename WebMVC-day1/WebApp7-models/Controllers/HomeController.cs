@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApp7_models.Models;
 using static WebApp7_models.Models.Students;
+using static WebApp7_models.Models.Peoples;
 using static System.Console;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -39,7 +40,11 @@ namespace WebApp7_models.Controllers
          return Json( BirthDate <= Models.People.YOUNG && BirthDate >= Models.People.OLD);
          }
 
-    public IActionResult People() => View();
+
+
+        public IActionResult Peoples() => View(peoples);
+       
+        public IActionResult People() => View();
 
         //  public string PeopleAdd([FromForm] People people)
         public IActionResult PeopleAdd([FromForm] People people)
@@ -49,8 +54,21 @@ namespace WebApp7_models.Controllers
             StringBuilder sb = new StringBuilder();
 
             if (ModelState.IsValid) { 
-                _logger.LogInformation("Model people valid!");  
-                return View("Index"); }
+                _logger.LogInformation("Model people valid!");
+                people.InternalId = Guid.NewGuid();
+                uint id = Models.Peoples.Increment();
+
+                while(peoples.FirstOrDefault( p => p.Id == id ) is not null)
+                {
+                    id = Models.Peoples.Increment();
+                }
+
+                people.Id = (int)id;
+
+                peoples.Add(people);
+
+                return View("Peoples",peoples); 
+            }
 
             sb.Append($"errors: {ModelState.ErrorCount}\n");
 
