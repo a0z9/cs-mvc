@@ -1,4 +1,7 @@
-﻿@{
+﻿@using WebApp7_models.Utils
+
+@addTagHelper *, WebApp7-models/Utils
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -20,7 +23,13 @@
 <cache expires-after="@TimeSpan.FromMinutes(1)">
 <h3>@r - @DateTime.Now.ToLongTimeString()</h3>
 </cache>
+<hr/>
+<cache expires-after="@TimeSpan.FromMinutes(1)" vary-by-route="id" priority="Microsoft.Extensions.Caching.Memory.CacheItemPriority.High">
+    <h3>@r - @DateTime.Now.ToLongTimeString()</h3>
+</cache>
+<hr/>
 
+<randomnumber max="1000" min="10"> </randomnumber>
 
 <environment names="Production,Prod">
     <h2>Добро пожаловать!</h2>

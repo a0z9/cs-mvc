@@ -39,6 +39,6 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "api",
    // pattern: "{controller=Home}/{action=Index}/{id?}/{name?}");
-   pattern: "api/{controller=Home}/{action=Index}/{i:int?}/{name?}");
+   pattern: "api/{controller=Home}/{action=Index}/{id:int?}/{name?}");
 
 app.Run();
