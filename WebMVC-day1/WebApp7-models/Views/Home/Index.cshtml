@@ -11,6 +11,15 @@
     <h2>Development Stage!</h2>
 
 </environment>
+@{
+    Random random  = new Random();
+    int r = random.Next(1, 333333333);
+}
+
+<h3>@r - @DateTime.Now.ToLongTimeString()</h3>
+<cache expires-after="@TimeSpan.FromMinutes(1)">
+<h3>@r - @DateTime.Now.ToLongTimeString()</h3>
+</cache>
 
 
 <environment names="Production,Prod">
