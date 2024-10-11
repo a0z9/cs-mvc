@@ -11,7 +11,7 @@ builder.Services.AddControllersWithViews(
 
 var app = builder.Build();
 
-//app.Environment.EnvironmentName = "test";
+app.Environment.EnvironmentName = "Prod";
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
