@@ -1,10 +1,10 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WebApp7_models.Models;
-using static WebApp7_models.Models.Students;
+using WebApp8_cookiee.Models;
+using static WebApp8_cookiee.Models.Students;
 using static System.Console;
 
-namespace WebApp7_models.Controllers
+namespace WebApp8_cookiee.Controllers
 {
     public class HomeController : Controller
     {

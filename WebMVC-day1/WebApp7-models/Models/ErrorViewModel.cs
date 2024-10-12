@@ -1,4 +1,4 @@
-namespace WebApp7_models.Models
+namespace WebApp8_cookiee.Models
 {
     public class ErrorViewModel
     {

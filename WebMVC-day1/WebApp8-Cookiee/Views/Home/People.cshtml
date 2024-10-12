@@ -1,0 +1,67 @@
+﻿@using WebApp8_cookiee.Utils
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model People
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Login page";
+}
+
+<h2>Добавить персонал:</h2>
+@*  <form method="post" action="@Url.Action(action: "PeopleAdd")"> *@
+<form method="post" asp-action="PeopleAdd" asp-controller="Home">
+<p>
+    <label>email:</label><br/>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"/>
+ </p>
+ <p>
+    <label>Имя:</label><br />
+    <input asp-for="Name" />
+    <span asp-validation-for="Name" />
+ </p>
+    <p>
+     <label>Фамилия:</label><br />
+        <input asp-for="Sname" />
+        <span asp-validation-for="Sname" />
+    </p>
+    <p>
+        <label>Дата рождения:</label><br />
+        <input type="date" asp-for="BirthDate" min="@People.OLD.ToString(format:"yyyy-MM-dd")" max="@People.YOUNG.ToString(format:"yyyy-MM-dd")" />
+        <span asp-validation-for="BirthDate" />
+    </p>
+    <p>
+        <label>Роль:</label><br />
+        @Html.RoleSelector(Resources.Roles)
+
+      @*   <select name="role">
+        @foreach(var role in Resourses.Roles)
+        {
+           <option value="@role.Id">@role.Name</option>
+        }
+        </select> *@
+    </p>
+ @Html.AntiForgeryToken()
+ <input type="submit" value="Добавить" />
+ <div asp-validation-summary="All"></div>
+ @* @Html.RolesHelper(Resourses.Roles) *@
+</form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" ></script>
+<script>
+    $.validator.addMethod("tolong",
+        function (value, element, parameters) {
+            const size = element.getAttribute('n-size');
+            console.log(element);
+            return value.length <= parseInt(size);
+        });
+
+    $.validator.unobtrusive.adapters.add("tolong", [], function (options) {
+        options.rules.tolong = {};
+        options.messages["tolong"] = options.message;
+    });
+</script>

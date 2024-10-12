@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WebApp7_models.Models;
-using static WebApp7_models.Models.Students;
-using static WebApp7_models.Models.Peoples;
+using WebApp8_cookiee.Models;
+using static WebApp8_cookiee.Models.Students;
+using static WebApp8_cookiee.Models.Peoples;
 using static System.Console;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Primitives;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace WebApp7_models.Controllers
+namespace WebApp8_cookiee.Controllers
 {
     public class HomeController : Controller
     {
