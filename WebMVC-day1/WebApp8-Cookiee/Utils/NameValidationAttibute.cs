@@ -12,6 +12,7 @@ namespace WebApp8_cookiee.Utils
         {
             this.max = max;
         }
+        
 
         public void AddValidation(ClientModelValidationContext context)
         {

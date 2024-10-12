@@ -1,11 +1,11 @@
-﻿@model StudentModel
+﻿@using WebApp8_cookiee.Models
+
+@model People
 
 @{
-    ViewData["Title"] = "Login info..";
-
+   ViewData["Title"] = "Login info..";
 }
 
-@* <h2>Вы зышли как @ViewBag.Id.</h2> *@
-<h2>Вы зышли как @Model.Id.</h2>
-<h2>Факультет: @Model.Department</h2>
-<h2>Grade: @Model.Grade</h2>
+<h2>Вы зашли как @Model.Name</h2>
+<h2>Эл. почта: @Model.Email</h2>
+<h2>Role: @Model.Role.Name</h2>

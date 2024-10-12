@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApp8_cookiee.Models;
-using static WebApp8_cookiee.Models.Students;
+
 using static System.Console;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Primitives;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Cryptography;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 namespace WebApp8_cookiee.Controllers
 {
@@ -124,19 +126,34 @@ namespace WebApp8_cookiee.Controllers
 
         public IActionResult Login()
         {
-
             return View();
         }
 
+       
         [HttpPost]
-        public IActionResult Check(string id, string pass)
+        public async Task<IActionResult> Check(string email, string pass)
         {
-            WriteLine($"{id} -- {pass}");
-           // ViewBag.Id = id;
-            var student = students.FirstOrDefault(x => x.Id == id && x.Password == pass);
-            if (student is null) return LocalRedirect("LogonFailed"); 
-           
-            return View(model: new StudentModel(id,pass));
+            //if (User.Identity.IsAuthenticated) return Redirect("/");
+
+            WriteLine($"{email} -- {pass}");
+            // ViewBag.Id = id;
+            People people = Resources.Peoples.FirstOrDefault(x => x.Email == email && x.Password == pass);
+            if (people is null) return LocalRedirect("LogonFailed");
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, people.Email),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, people.Role.Name)
+            };
+
+            var claimId = new ClaimsIdentity(claims);
+            var claimPr = new ClaimsPrincipal(claimId);
+
+            await HttpContext.SignInAsync(claimPr);
+
+            return View(people);
+
+           // return View(model: new StudentModel(id, pass));
         }
 
         public IActionResult LogonFailed() => View();

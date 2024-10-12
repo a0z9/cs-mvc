@@ -6,11 +6,12 @@
     ViewData["Title"] = "Login page";
 }
 
+
 <h2>Login Form</h2>
 <form method="post" action="@Url.Action(action: "Check")">
 <p>
-    <label>Id:</label><br/>
-    <input name="id" />
+    <label>Email:</label><br/>
+    <input type="email" name="email" />
  </p>
  <p>
     <label>Password:</label><br />
