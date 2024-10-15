@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>WebApp7_models</RootNamespace>
+    <RootNamespace>WebApp8_cookiee</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

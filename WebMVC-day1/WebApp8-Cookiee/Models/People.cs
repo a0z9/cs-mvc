@@ -2,13 +2,20 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using WebApp8_cookiee.Utils;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace WebApp8_cookiee.Models
 {
     public class People
     {
 
-       
+        public static bool isAdmin() {
+
+            
+            return false;
+        }
 
             [BindNever]
         public int Id { get; set; } //id
@@ -63,7 +70,7 @@ namespace WebApp8_cookiee.Models
         //public double? Grade { get; set; }
         //...
         [BindNever]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
     }
 }

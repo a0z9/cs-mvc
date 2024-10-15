@@ -5,6 +5,8 @@ namespace WebApp8_cookiee.Models
     public static class Resources
     {
 
+
+
         private static int id = 0;
         public static int Increment() => ++id;
 
@@ -28,9 +30,9 @@ namespace WebApp8_cookiee.Models
          BirthDate=new DateOnly(2003,10,1),
          Name = "Василий",
          Sname = "Петров",
-         Role = Roles.First<Role>(r=>r.Id==2),
+         Role = Roles.First<Role>(r=>r.Id==0),
          Password = "111"
      },
     };
-    }
+  }
 }

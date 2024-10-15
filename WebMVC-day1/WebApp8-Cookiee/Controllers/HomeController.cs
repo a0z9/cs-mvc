@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApp8_cookiee.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 using static System.Console;
 using System.Reflection.Metadata.Ecma335;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Cryptography;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApp8_cookiee.Controllers
 {
@@ -44,12 +46,14 @@ namespace WebApp8_cookiee.Controllers
          }
 
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Peoples() => View(Resources.Peoples);
-       
+        
+        [Authorize(Roles = "Admin")]
         public IActionResult People() => View();
 
         //  public string PeopleAdd([FromForm] People people)
+        [Authorize(Roles = "Admin")]
         public IActionResult PeopleAdd([FromForm] People people)
         {
             var ctx = HttpContext;
@@ -129,11 +133,20 @@ namespace WebApp8_cookiee.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Logout() {
+            if (User.Identity.IsAuthenticated)
+            {
+                // client free code...
+                await HttpContext.SignOutAsync("Cookies");
+            }
+
+            return Redirect("/");
+        }
        
         [HttpPost]
-        public async Task<IActionResult> Check(string email, string pass)
+        public async Task<IActionResult> Check(string email, string pass, string? url)
         {
-            //if (User.Identity.IsAuthenticated) return Redirect("/");
+            if (User.Identity.IsAuthenticated) return Redirect("/");
 
             WriteLine($"{email} -- {pass}");
             // ViewBag.Id = id;
@@ -143,15 +156,19 @@ namespace WebApp8_cookiee.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, people.Email),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, people.Role.Name)
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, people.Role.Name),
+                new Claim("Role", people.Role.Name)
             };
 
-            var claimId = new ClaimsIdentity(claims);
+            var claimId = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
             var claimPr = new ClaimsPrincipal(claimId);
 
+           
             await HttpContext.SignInAsync(claimPr);
 
-            return View(people);
+            if (String.IsNullOrEmpty(url) || url == "null") url = "/";
+
+            return Redirect(url); //View(people);
 
            // return View(model: new StudentModel(id, pass));
         }

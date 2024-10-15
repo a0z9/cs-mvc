@@ -17,6 +17,15 @@
     <label>Password:</label><br />
     <input type="password" name="pass" />
  </p>
- <input type="submit" value="Login" />
+    <input hidden id="url" name="url" />
 
-</form>
+ <input type="submit" value="Login" />
+ </form>
+
+<script>
+const str = location.search;
+const params = new URLSearchParams(str);
+const url = params.get('ReturnUrl');
+//console.log(`url:${url}`);
+document.getElementById("url").setAttribute("value", url);
+</script>

@@ -27,27 +27,35 @@
                         </li>
                         @if (!User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                            <li class="nav-item" style="align-items:end;">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">[Login]</a>
                             </li>
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout @User.Identity.Name</a>
+                            <li class="nav-item" >
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">[Logout @User.Identity.Name]</a>
                             </li>
 
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="People">Добавить персонал</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Peoples">Peoples</a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
         </nav>
+        @if(User.Identity.IsAuthenticated && 
+        @* Resources.Peoples.FirstOrDefault(r => r.Email==User.Identity.Name && r.Role.Name=="Admin") is not null)  *@
+        User.Claims.FirstOrDefault(r => r.Type == "Role" && r.Value == "Admin") is not null)
+        {
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-3" role="navigation">
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="People">Добавить персонал</a></li>
+                    <li class="nav-item"> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Peoples">Peoples</a></li>
+                </ul>
+                 </div>   
+         </nav>
+        }
 
     </header>
     <div class="container">
