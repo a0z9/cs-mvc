@@ -23,14 +23,21 @@ namespace WebApp8_cookiee.Models
          BirthDate=new DateOnly(2000,1,1),
          Name = "Kate",
          Sname = "Sharlock",
-         Role = Roles.First<Role>(r=>r.Id==2),
+         Role = Roles.First<Role>(r=>r.Name=="Student"),
          Password = "111"
      },
       new People{Id = Resources.Increment(), Email="basil@ikit.ru",
          BirthDate=new DateOnly(2003,10,1),
          Name = "Василий",
          Sname = "Петров",
-         Role = Roles.First<Role>(r=>r.Id==0),
+         Role = Roles.First<Role>(r=>r.Name=="Admin"),
+         Password = "111"
+     },
+      new People{Id = Resources.Increment(), Email="jake@ikit.ru",
+         BirthDate=new DateOnly(2003,10,1),
+         Name = "Иван",
+         Sname = "Смирнов",
+         Role = Roles.First<Role>(r=>r.Name=="Prepod"),
          Password = "111"
      },
     };

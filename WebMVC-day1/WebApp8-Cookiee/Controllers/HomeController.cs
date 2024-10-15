@@ -142,7 +142,18 @@ namespace WebApp8_cookiee.Controllers
 
             return Redirect("/");
         }
-       
+
+        public IActionResult Delete(int id) {
+            
+            _logger.LogWarning($"Delete record, id={id}");
+            Models.People people = Resources.Peoples.First(p => p.Id == id);
+         
+            if(people is not null)
+            Resources.Peoples.Remove(people);
+
+            return View(model: Resources.Peoples, viewName: "Peoples");
+        }
+
         [HttpPost]
         public async Task<IActionResult> Check(string email, string pass, string? url)
         {
