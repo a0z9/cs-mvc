@@ -4,12 +4,25 @@ using System.ComponentModel.DataAnnotations;
 using WebApp8_cookiee.Utils;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Cookies;S
+using System.Security.Cryptography;
+using System.Text;
 
 namespace WebApp8_cookiee.Models
 {
     public class People
     {
+
+        public static string getPassHash(string input) {
+            string output = ";sldkf928tig;km;qi459ig;salfk;slmvz/v,.";
+            using (var sha256 = SHA256.Create())
+            {
+                byte[] arr = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+                output = BitConverter.ToString(arr).Replace("-", ""); 
+            }
+              return output;
+        }
+
 
         public static bool isAdmin() {
 
