@@ -55,7 +55,17 @@ else
         </select> *@
     </p>
  @Html.AntiForgeryToken()
- <input type="submit" value="Добавить" />
+    
+   @if (ViewData.ContainsKey("update"))
+    {
+    <input hidden name="act" value="update"/> 
+    <input type="submit" value="Сохранить" />
+    }
+    else{
+    <input hidden name="act" value="new" />
+    <input type="submit" value="Добавить" />
+    }
+
  <div asp-validation-summary="All"></div>
  @* @Html.RolesHelper(Resourses.Roles) *@
 </form>

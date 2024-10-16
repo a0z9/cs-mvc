@@ -54,7 +54,7 @@ namespace WebApp8_cookiee.Controllers
 
         //  public string PeopleAdd([FromForm] People people)
         [Authorize(Roles = "Admin")]
-        public IActionResult PeopleAdd([FromForm] People people)
+        public IActionResult PeopleAdd([FromForm] People people, string act)
         {
             var ctx = HttpContext;
 
