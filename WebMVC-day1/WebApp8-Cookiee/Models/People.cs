@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using WebApp8_cookiee.Utils;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;S
+using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Cryptography;
 using System.Text;
 

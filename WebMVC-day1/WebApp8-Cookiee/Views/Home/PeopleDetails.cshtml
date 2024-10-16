@@ -1,0 +1,17 @@
+﻿@using WebApp8_cookiee.Models
+
+@model People
+
+@{
+   ViewData["Title"] = "Login info..";
+
+   int Year = DateTime.Now.Year - Model.BirthDate.Year; 
+    
+}
+
+<h2>Вы зашли как @Model.Name @Model.Sname</h2>
+<h2>Эл. почта: @Model.Email</h2>
+<h2>Role: @Model.Role.Name</h2>
+<h2>Дата рождения: @Model.BirthDate</h2>
+<h2>Полных лет: @Year</h2>
+<h2>InternalId: @Model.InternalId</h2>

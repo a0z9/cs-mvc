@@ -5,11 +5,22 @@
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-    ViewData["Title"] = "Login page";
-}
+@* @{
+    ViewData["Title"] = "Добавить персонал";
+} *@
 
-<h2>Добавить персонал:</h2>
+@if (ViewData.ContainsKey("update"))
+{
+    <h2>Изменить данные:</h2>
+    ViewData["Title"] = "Изменить данные";
+
+}
+else
+
+{
+    <h2>Добавить персонал:</h2 >
+    ViewData["Title"] = "Добавить персонал";
+}
 @*  <form method="post" action="@Url.Action(action: "PeopleAdd")"> *@
 <form method="post" asp-action="PeopleAdd" asp-controller="Home">
 <p>

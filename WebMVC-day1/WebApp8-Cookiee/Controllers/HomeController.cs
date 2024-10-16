@@ -143,6 +143,7 @@ namespace WebApp8_cookiee.Controllers
             return Redirect("/");
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id) {
             
             _logger.LogWarning($"Delete record, id={id}");
@@ -153,6 +154,38 @@ namespace WebApp8_cookiee.Controllers
 
             return View(model: Resources.Peoples, viewName: "Peoples");
         }
+
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(int id)
+        {
+
+            _logger.LogWarning($"Delete record, id={id}");
+            Models.People people = Resources.Peoples.First(p => p.Id == id);
+
+            if (people is not null)
+            {
+                ViewData["update"] = true;
+                return View(model: people, viewName: "People");
+            }
+
+            return View("/");
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult PeopleDetails(int id)
+        {
+
+            _logger.LogInformation($"Show record, id={id}");
+            Models.People people = Resources.Peoples.First(p => p.Id == id);
+
+            if (people is not null)   return View(people);
+
+            return Redirect("/");
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Check(string email, string pass, string? url)
