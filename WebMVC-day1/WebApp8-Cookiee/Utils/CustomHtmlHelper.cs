@@ -22,10 +22,22 @@ namespace WebApp8_cookiee.Utils
             return new HtmlString(result.ToString());
         }
 
-        public static HtmlString RoleSelector(this IHtmlHelper htmlHelper, IEnumerable<Role> roles)
+        public static HtmlString RoleSelector(this IHtmlHelper htmlHelper, IEnumerable<Role> roles, string selected="Student")
         {
+            if (String.IsNullOrEmpty(selected)) selected = "Student";
             StringBuilder result = new StringBuilder("<select name='role'>");
-            foreach (Role role in roles) result.Append($"<option value='{role.Id}'>{role.Name}</option>");
+            foreach (Role role in roles)
+            {
+                if (role.Name == selected) {
+                    result.Append($"<option selected value={role.Id}'>{role.Name}</option>");
+                }
+                else
+                {
+                    result.Append($"<option value={role.Id}'>{role.Name}</option>");
+                }
+            }
+            
+            
             result.Append("</select>");
 
             return new HtmlString(result.ToString());

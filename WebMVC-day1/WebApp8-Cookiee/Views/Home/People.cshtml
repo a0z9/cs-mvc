@@ -2,14 +2,12 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model People
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@* @{
+@* 
+@{
     ViewData["Title"] = "Добавить персонал";
 } *@
 
-@if (ViewData.ContainsKey("update"))
+@* @if (ViewData.ContainsKey("update"))
 {
     <h2>Изменить данные:</h2>
     ViewData["Title"] = "Изменить данные";
@@ -20,9 +18,12 @@ else
 {
     <h2>Добавить персонал:</h2 >
     ViewData["Title"] = "Добавить персонал";
-}
+} *@
+
 @*  <form method="post" action="@Url.Action(action: "PeopleAdd")"> *@
 <form method="post" asp-action="PeopleAdd" asp-controller="Home">
+
+
 <p>
     <label>email:</label><br/>
     <input asp-for="Email" />
@@ -45,7 +46,7 @@ else
     </p>
     <p>
         <label>Роль:</label><br />
-        @Html.RoleSelector(Resources.Roles)
+        @Html.RoleSelector(Resources.Roles, Model.Role.Name)
 
       @*   <select name="role">
         @foreach(var role in Resourses.Roles)
@@ -58,7 +59,8 @@ else
     
    @if (ViewData.ContainsKey("update"))
     {
-    <input hidden name="act" value="update"/> 
+    <input hidden name="act" value="update"/>
+    <input hidden name="peopleId" value=@Model.Id />
     <input type="submit" value="Сохранить" />
     }
     else{

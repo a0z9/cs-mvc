@@ -48,33 +48,45 @@ namespace WebApp8_cookiee.Controllers
 
         [Authorize(Roles = "Admin")]
         public IActionResult Peoples() => View(Resources.Peoples);
-        
+
         [Authorize(Roles = "Admin")]
-        public IActionResult People() => View();
+        public IActionResult People() {
+            ViewData["tst"] = "people";
+            return View();
+        }
 
         //  public string PeopleAdd([FromForm] People people)
         [Authorize(Roles = "Admin")]
-        public IActionResult PeopleAdd([FromForm] People people, string act)
+        public IActionResult PeopleAdd([FromForm] People people, string act, int? peopleId=0)
         {
             var ctx = HttpContext;
+            _logger.LogInformation($"act:{act}, peopleId:{peopleId}");
 
             StringBuilder sb = new StringBuilder();
 
             if (ModelState.IsValid) { 
                 _logger.LogInformation("Model people valid!");
-                people.InternalId = Guid.NewGuid();
-                int id = Resources.Increment();
-
-                while(Resources.Peoples.FirstOrDefault( p => p.Id == id ) is not null)
+                if (act != "update")
                 {
-                    id = Resources.Increment();
+
+                    people.InternalId = Guid.NewGuid();
+                    int id = Resources.Increment();
+
+                    while (Resources.Peoples.FirstOrDefault(p => p.Id == id) is not null)
+                    {
+                        id = Resources.Increment();
+                    }
+
+
+                    people.Id = (int)id;
+                    people.Password = Models.People.getPassHash($"{people.Email}111");
+
+                    Resources.Peoples.Add(people);
                 }
+                else { 
 
                 
-                people.Id = (int)id;
-                people.Password = Models.People.getPassHash($"{people.Email}111");
-
-                Resources.Peoples.Add(people);
+                }
 
                 return View("Peoples", Resources.Peoples); 
             }
