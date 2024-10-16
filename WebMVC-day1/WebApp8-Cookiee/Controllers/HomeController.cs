@@ -72,7 +72,7 @@ namespace WebApp8_cookiee.Controllers
 
                 
                 people.Id = (int)id;
-                people.Password = "111";
+                people.Password = Models.People.getPassHash($"{people.Email}111");
 
                 Resources.Peoples.Add(people);
 
@@ -161,7 +161,7 @@ namespace WebApp8_cookiee.Controllers
 
             WriteLine($"{email} -- {pass}");
             // ViewBag.Id = id;
-            People people = Resources.Peoples.FirstOrDefault(x => x.Email == email && x.Password == pass);
+            People people = Resources.Peoples.FirstOrDefault(x => x.Email == email && x.Password == Models.People.getPassHash($"{email}{pass}"));
             if (people is null) return LocalRedirect("LogonFailed");
 
             var claims = new List<Claim>

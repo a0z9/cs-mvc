@@ -30,7 +30,7 @@ namespace WebApp8_cookiee.Models
             return false;
         }
 
-            [BindNever]
+        [BindNever]
         public int Id { get; set; } //id
 
         public const int MAX_AGE = 100, MIN_AGE = 16;

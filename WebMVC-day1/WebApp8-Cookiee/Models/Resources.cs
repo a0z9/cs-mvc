@@ -17,28 +17,34 @@ namespace WebApp8_cookiee.Models
     new Role{Id=0,Name="Admin"}
     };
 
+     private static List<string> emails = new List<string> {
+        "kate@ikit.ru",
+        "basil@ikit.ru",
+        "jake@ikit.ru"
+        };
+
         public static List<People> Peoples = new List<People>
     {
-     new People{Id = Resources.Increment(), Email="kate@ikit.ru",
+     new People{Id = Resources.Increment(), Email=emails[0],
          BirthDate=new DateOnly(2000,1,1),
          Name = "Kate",
          Sname = "Sharlock",
          Role = Roles.First<Role>(r=>r.Name=="Student"),
-         Password = "111"
+         Password = People.getPassHash($"{emails[0]}111")
      },
-      new People{Id = Resources.Increment(), Email="basil@ikit.ru",
+      new People{Id = Resources.Increment(), Email=emails[1],
          BirthDate=new DateOnly(2003,10,1),
          Name = "Василий",
          Sname = "Петров",
          Role = Roles.First<Role>(r=>r.Name=="Admin"),
-         Password = "111"
+         Password =  People.getPassHash($"{emails[1]}111")
      },
-      new People{Id = Resources.Increment(), Email="jake@ikit.ru",
+      new People{Id = Resources.Increment(), Email=emails[2],
          BirthDate=new DateOnly(2003,10,1),
          Name = "Иван",
          Sname = "Смирнов",
          Role = Roles.First<Role>(r=>r.Name=="Prepod"),
-         Password = "111"
+         Password =  People.getPassHash($"{emails[2]}111")
      },
     };
   }
