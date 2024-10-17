@@ -3,8 +3,26 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Build.Framework;
 using Microsoft.AspNetCore.Razor.Language;
 using WebApp9_cookiee_ef.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.CodeAnalysis;
+using NuGet.Protocol.Plugins;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Microsoft.CodeAnalysis.Options;
+using WebApp9_cookiee_ef.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+var conn = builder.Configuration.GetConnectionString("mariadb_local");
+
+builder.Services.AddDbContextPool<UniversityDb>(
+    opt => {
+        opt.UseMySql(conn, ServerVersion.AutoDetect(conn));
+        opt.EnableDetailedErrors();
+        opt.EnableSensitiveDataLogging();
+       
+        }
+    );
 
 builder.Services.AddControllersWithViews(
     opt => opt.ModelBinderProviders.Insert(0,new RolePeopleModelBinderProvider())
