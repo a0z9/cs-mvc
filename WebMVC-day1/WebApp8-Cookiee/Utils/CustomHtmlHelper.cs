@@ -29,11 +29,11 @@ namespace WebApp8_cookiee.Utils
             foreach (Role role in roles)
             {
                 if (role.Name == selected) {
-                    result.Append($"<option selected value={role.Id}'>{role.Name}</option>");
+                    result.Append($"<option selected value={role.Id} >{role.Name}</option>");
                 }
                 else
                 {
-                    result.Append($"<option value={role.Id}'>{role.Name}</option>");
+                    result.Append($"<option value={role.Id} >{role.Name}</option>");
                 }
             }
             

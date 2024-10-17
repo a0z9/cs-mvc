@@ -30,6 +30,17 @@ namespace WebApp8_cookiee.Models
             return false;
         }
 
+        public People()
+        {
+            
+        }
+
+        public People(Role role)
+        {
+            Role = role;
+        }
+
+
         [BindNever]
         public int Id { get; set; } //id
 

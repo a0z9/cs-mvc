@@ -2,23 +2,13 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model People
 
-@* 
+  
 @{
-    ViewData["Title"] = "Добавить персонал";
-} *@
+    bool isUpdate = ViewData.ContainsKey("update");
+    ViewData["Title"] = isUpdate ? "Изменить данные":"Добавить персонал";
+  }
 
-@* @if (ViewData.ContainsKey("update"))
-{
-    <h2>Изменить данные:</h2>
-    ViewData["Title"] = "Изменить данные";
-
-}
-else
-
-{
-    <h2>Добавить персонал:</h2 >
-    ViewData["Title"] = "Добавить персонал";
-} *@
+<h2>@ViewData["Title"]</h2>
 
 @*  <form method="post" action="@Url.Action(action: "PeopleAdd")"> *@
 <form method="post" asp-action="PeopleAdd" asp-controller="Home">
@@ -46,7 +36,8 @@ else
     </p>
     <p>
         <label>Роль:</label><br />
-        @Html.RoleSelector(Resources.Roles, Model.Role.Name)
+        
+        @Html.RoleSelector(Resources.Roles, isUpdate?Model.Role.Name:"Student" )
 
       @*   <select name="role">
         @foreach(var role in Resourses.Roles)
@@ -57,7 +48,7 @@ else
     </p>
  @Html.AntiForgeryToken()
     
-   @if (ViewData.ContainsKey("update"))
+   @if (isUpdate)
     {
     <input hidden name="act" value="update"/>
     <input hidden name="peopleId" value=@Model.Id />

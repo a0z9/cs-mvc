@@ -13,6 +13,7 @@ using System.Security.Cryptography;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using WebApp8_cookiee.Models.Binders;
 
 namespace WebApp8_cookiee.Controllers
 {
@@ -48,12 +49,9 @@ namespace WebApp8_cookiee.Controllers
 
         [Authorize(Roles = "Admin")]
         public IActionResult Peoples() => View(Resources.Peoples);
-
+        
         [Authorize(Roles = "Admin")]
-        public IActionResult People() {
-            ViewData["tst"] = "people";
-            return View();
-        }
+        public IActionResult People() => View();
 
         //  public string PeopleAdd([FromForm] People people)
         [Authorize(Roles = "Admin")]
@@ -83,9 +81,19 @@ namespace WebApp8_cookiee.Controllers
 
                     Resources.Peoples.Add(people);
                 }
-                else { 
+                else {
 
-                
+                    People peopleOld = Resources.Peoples.FirstOrDefault(p => p.Id == peopleId);
+                    if (peopleOld != null)
+                    {
+                        peopleOld.Email = people.Email;
+                        peopleOld.Name = people.Name;
+                        peopleOld.Sname = people.Sname;
+                        peopleOld.BirthDate = people.BirthDate;
+                        peopleOld.Password = Models.People.getPassHash($"{peopleOld.Email}{people.Password}");
+                        peopleOld.Role = people.Role;
+                    }
+
                 }
 
                 return View("Peoples", Resources.Peoples); 
@@ -173,15 +181,14 @@ namespace WebApp8_cookiee.Controllers
         {
 
             _logger.LogWarning($"Delete record, id={id}");
-            Models.People people = Resources.Peoples.First(p => p.Id == id);
+            People people = Resources.Peoples.First(p => p.Id == id);
 
             if (people is not null)
             {
                 ViewData["update"] = true;
                 return View(model: people, viewName: "People");
             }
-
-            return View("/");
+          return View("/");
         }
 
 
