@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp7-models", "WebApp7-m
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp8-cookiee", "WebApp8-Cookiee\WebApp8-cookiee.csproj", "{0ED6C72E-69CB-4EAE-9597-E8480979A8F5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp9-cookiee-ef", "WebApp9-Cookiee-ef\WebApp9-cookiee-ef.csproj", "{15851787-40A8-49D1-A795-747D9097FE70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{0ED6C72E-69CB-4EAE-9597-E8480979A8F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0ED6C72E-69CB-4EAE-9597-E8480979A8F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0ED6C72E-69CB-4EAE-9597-E8480979A8F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15851787-40A8-49D1-A795-747D9097FE70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15851787-40A8-49D1-A795-747D9097FE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15851787-40A8-49D1-A795-747D9097FE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15851787-40A8-49D1-A795-747D9097FE70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

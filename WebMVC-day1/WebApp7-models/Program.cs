@@ -1,4 +1,4 @@
-using WebApp8_cookiee.Models.Binders;
+using WebApp9_cookiee_ef.Models.Binders;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,0 +1,12 @@
+﻿@using WebApp8_cookiee.Models
+
+@model People
+
+@{
+   ViewData["Title"] = "Login info..";
+}
+
+<h2>Вы зашли как @Model.Name @Model.Sname</h2>
+<h2>Эл. почта: @Model.Email</h2>
+<h2>Role: @Model.Role.Name</h2>
+<h2>InternalId: @Model.InternalId</h2>

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace WebApp8_cookiee.TagHelpers
+namespace WebApp9_cookiee_ef.TagHelpers
 {
     public class RandomNumberTagHelper : TagHelper
     {

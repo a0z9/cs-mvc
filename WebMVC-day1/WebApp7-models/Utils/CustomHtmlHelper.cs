@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text.Json;
-using WebApp8_cookiee.Models;
+using WebApp9_cookiee_ef.Models;
 using System.Text;
 //using Newtonsoft.Json;
 
-namespace WebApp8_cookiee.Utils
+namespace WebApp9_cookiee_ef.Utils
 {
     public static class CustomHtmlHelper
     {

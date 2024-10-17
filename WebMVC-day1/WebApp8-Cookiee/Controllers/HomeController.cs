@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WebApp8_cookiee.Models;
+using WebApp9_cookiee_ef.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 using static System.Console;
@@ -13,9 +13,9 @@ using System.Security.Cryptography;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using WebApp8_cookiee.Models.Binders;
+using WebApp9_cookiee_ef.Models.Binders;
 
-namespace WebApp8_cookiee.Controllers
+namespace WebApp9_cookiee_ef.Controllers
 {
     public class HomeController : Controller
     {

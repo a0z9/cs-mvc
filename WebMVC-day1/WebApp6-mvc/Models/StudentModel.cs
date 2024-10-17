@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace WebApp8_cookiee.Models
+namespace WebApp9_cookiee_ef.Models
 {
     public record class StudentModel(string Id, string Password, string Grade="9", 
         string Department = "Phys");

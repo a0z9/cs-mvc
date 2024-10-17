@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace WebApp8_cookiee.Models.Binders
+namespace WebApp9_cookiee_ef.Models.Binders
 {
     public class RolePeopleModelBinderProvider : IModelBinderProvider
     {

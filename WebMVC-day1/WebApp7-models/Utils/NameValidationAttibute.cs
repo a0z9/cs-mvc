@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using WebApp8_cookiee.Models;
+using WebApp9_cookiee_ef.Models;
 
-namespace WebApp8_cookiee.Utils
+namespace WebApp9_cookiee_ef.Utils
 {
     public class NameValidationAttribute : ValidationAttribute, IClientModelValidator
     {

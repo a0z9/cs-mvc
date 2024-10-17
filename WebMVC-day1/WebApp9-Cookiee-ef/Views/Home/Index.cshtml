@@ -1,0 +1,44 @@
+﻿@using WebApp9_cookiee_ef
+@using WebApp9_cookiee_ef.Services
+
+@* @addTagHelper *, WebApp7-models *@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper WebApp9_cookiee_ef.TagHelpers.RandomNumberTagHelper, WebApp7-models
+
+@inject iData d
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<environment names="Development,Dev">
+    <h2>Development Stage!</h2>
+
+</environment>
+@{
+    Random random  = new Random();
+    int r = random.Next(1, 333333333);
+}
+
+<h3>@r - @DateTime.Now.ToLongTimeString()</h3>
+<cache expires-after="@TimeSpan.FromMinutes(1)">
+<h3>@r - @DateTime.Now.ToLongTimeString()</h3>
+</cache>
+<hr/>
+<cache expires-after="@TimeSpan.FromMinutes(1)" vary-by-route="id" priority="Microsoft.Extensions.Caching.Memory.CacheItemPriority.High">
+    <h3>@r - @DateTime.Now.ToLongTimeString()</h3>
+</cache>
+<hr/>
+
+<h2><random-number max="1000000" min="-1000000"> </random-number></h2>
+<h2>Service send data @d.Send(new byte[]{})</h2>
+
+<environment names="Production,Prod">
+    <h2>Добро пожаловать!</h2>
+
+</environment>
