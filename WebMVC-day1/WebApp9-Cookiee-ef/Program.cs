@@ -1,13 +1,7 @@
 using WebApp9_cookiee_ef.Models.Binders;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Build.Framework;
-using Microsoft.AspNetCore.Razor.Language;
 using WebApp9_cookiee_ef.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.CodeAnalysis;
-using NuGet.Protocol.Plugins;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using Microsoft.CodeAnalysis.Options;
 using WebApp9_cookiee_ef.Entities;
 
 var builder = WebApplication.CreateBuilder(args);

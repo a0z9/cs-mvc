@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using WebApp9_cookiee_ef.Utils;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Cryptography;
 using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApp9_cookiee_ef.Models
 {
+    [Index(nameof(Email), IsUnique = true)]
     public class People
     {
 
@@ -24,22 +24,7 @@ namespace WebApp9_cookiee_ef.Models
         }
 
 
-        public static bool isAdmin() {
-
-            
-            return false;
-        }
-
-        public People()
-        {
-            
-        }
-
-        public People(Role role)
-        {
-            Role = role;
-        }
-
+        public static bool isAdmin() => false;   
 
         [BindNever]
         public int Id { get; set; } //id
@@ -47,15 +32,12 @@ namespace WebApp9_cookiee_ef.Models
         public const int MAX_AGE = 100, MIN_AGE = 16;
 
         private static DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-        //private static DateOnly Old = today.AddYears(-MAX_AGE);
-        //private static DateOnly Young = today.AddYears(-MAX_AGE);
-
+     
         public static readonly DateOnly OLD = today.AddYears(-MAX_AGE),
                                YOUNG = today.AddYears(-MIN_AGE);
         public const int NameSize = 15;
         public const int SNameSize = 20;
-        // public readonly static string SNameError = $"Фамилия слишком длинная {SNameSize}";
-
+        
         [BindRequired]
         [Required(ErrorMessage = "Не указана электронная почта")]
         [RegularExpression(@"[a-zA-Z0-9._\-%+]+@[a-zA-Z0-9._\-%+]+\.[a-zA-Z]{2,}",
@@ -71,7 +53,6 @@ namespace WebApp9_cookiee_ef.Models
         [BindRequired]
         [Required]
         [NameValidation(NameSize, ErrorMessage = "Имя слишком длинное, сократите..")]
-        // [StringLength(maximumLength:15, ErrorMessage = "Имя слишком длинное")]
         public string Name { get; set; }
 
         [BindRequired]
@@ -80,19 +61,17 @@ namespace WebApp9_cookiee_ef.Models
         public string Sname { get; set; }
 
         [BindNever]
+        [Column(TypeName ="varchar(120)")]
         public string? Department { get; set; }
 
         [BindRequired]
         [Required]
-        //[AgeValidation(maxAge:100, minAge:18, ErrorMessage = "Неверный возраст")]
         [Remote(action: "AgeCheck", controller: "Home", ErrorMessage = "Неверный возраст.")]
         public DateOnly BirthDate { get; set; }
 
         [BindNever]
         public Guid? InternalId { get; set; }
-        //[BindNever]
-        //public double? Grade { get; set; }
-        //...
+        
         [BindNever]
         public string? Password { get; set; }
 
