@@ -13,6 +13,14 @@ namespace WebApp9_cookiee_ef.Entities
             log.LogInformation($"+++ db created: [{ContextId}]");
             Database.EnsureCreated();
 
+           /*
+            if (!Roles.Any() && !Peoples.Any())
+            {
+                Roles.AddRange(Resources.InitRoles);
+                Peoples.AddRange(Resources.InitPeoples);
+                SaveChanges();
+            }*/
+
         }
 
         public DbSet<People> Peoples { get; set; }

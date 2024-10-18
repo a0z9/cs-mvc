@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\HomeController - Copy.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Home\Check - Copy %282%29.cshtml" />
     <Content Remove="Views\Home\Check - Copy.cshtml" />
   </ItemGroup>

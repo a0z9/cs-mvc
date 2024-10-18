@@ -63,7 +63,7 @@ namespace WebApp9_cookiee_ef.Controllers
 
         //  public string PeopleAdd([FromForm] People people)
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> PeopleAdd([FromForm] People people, string act, int? peopleId=0)
+        public IActionResult PeopleAdd([FromForm] People people, string act, int? peopleId=0)
         {
             var ctx = HttpContext;
             _logger.LogInformation($"act:{act}, peopleId:{peopleId}");
@@ -76,17 +76,22 @@ namespace WebApp9_cookiee_ef.Controllers
                 {
 
                     people.InternalId = Guid.NewGuid();
+                    int id = Resources.Increment();
+
+                    while (Resources.Peoples.FirstOrDefault(p => p.Id == id) is not null)
+                    {
+                        id = Resources.Increment();
+                    }
+
+
+                    people.Id = (int)id;
                     people.Password = Models.People.getPassHash($"{people.Email}111");
-                    
-                    db.Attach(people.Role);
-                    db.Peoples.Add(people);
 
-                    await db.SaveChangesAsync();
-
+                    Resources.Peoples.Add(people);
                 }
                 else {
 
-                    People peopleOld = db.Peoples.FirstOrDefault(p => p.Id == peopleId);
+                    People peopleOld = Resources.Peoples.FirstOrDefault(p => p.Id == peopleId);
                     if (peopleOld != null)
                     {
                         peopleOld.Email = people.Email;
