@@ -20,7 +20,6 @@ builder.Services.AddDbContextPool<UniversityDb>(
         opt.UseMySql(conn, ServerVersion.AutoDetect(conn));
         opt.EnableDetailedErrors();
         opt.EnableSensitiveDataLogging();
-       
         }
     );
 
@@ -36,9 +35,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         
     });
 
-//builder.Services.AddSingleton<iData, DataService>();
+builder.Services.AddSingleton<iData, DataService>();
 //builder.Services.AddTransient<iData, DataService>();
-builder.Services.AddScoped<iData, DataService>();
+//builder.Services.AddScoped<iData, DataService>();
+//builder.Services.Add<iData, DataService>();
 
 
 

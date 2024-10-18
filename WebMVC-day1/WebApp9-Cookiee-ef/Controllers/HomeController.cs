@@ -17,6 +17,7 @@ using WebApp9_cookiee_ef.Models.Binders;
 using WebApp9_cookiee_ef.Services;
 using System.Data;
 using System.Data.Common;
+using WebApp9_cookiee_ef.Entities;
 
 namespace WebApp9_cookiee_ef.Controllers
 {
@@ -24,11 +25,13 @@ namespace WebApp9_cookiee_ef.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private iData _data;
-
-        public HomeController(ILogger<HomeController> logger, iData data)
+        private UniversityDb db;
+       
+        public HomeController(ILogger<HomeController> logger, iData data, UniversityDb db)
         {
             _logger = logger;
             _data = data;
+            this.db = db;
         }
 
 
