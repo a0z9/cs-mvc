@@ -45,7 +45,10 @@ namespace WebApp9_cookiee_ef.Controllers
 
         public IActionResult EmailCheck(string email) {
             
-            if (email == "admin@ikit.ru") return Json(false);
+            if (email == "admin@ikit.ru" ||
+                db.Peoples.FirstOrDefault(p => p.Email.ToLower().Trim() == email.ToLower().Trim()) is not null
+                ) return Json(false);
+            
             return Json(true);
         }
             
@@ -195,7 +198,7 @@ namespace WebApp9_cookiee_ef.Controllers
         {
 
             _logger.LogWarning($"Delete record, id={id}");
-            People people = db.Peoples.First(p => p.Id == id);
+            People people = db.Peoples.Include(p=>p.Role).First(p => p.Id == id);
 
             if (people is not null)
             {
@@ -211,7 +214,7 @@ namespace WebApp9_cookiee_ef.Controllers
         {
 
             _logger.LogInformation($"Show record, id={id}");
-            People people = db.Peoples.First(p => p.Id == id);
+            People people = db.Peoples.Include(p=>p.Role).First(p => p.Id == id);
 
             if (people is not null)  return View(people);
 

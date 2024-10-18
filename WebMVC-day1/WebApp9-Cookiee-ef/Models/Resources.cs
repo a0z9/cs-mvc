@@ -7,8 +7,8 @@ namespace WebApp9_cookiee_ef.Models
 
 
 
-        private static int id = 0;
-        public static int Increment() => ++id;
+        //private static int id = 0;
+        //public static int Increment() => ++id;
 
         public static List<Role> Roles = new List<Role>();
         
@@ -26,33 +26,33 @@ namespace WebApp9_cookiee_ef.Models
         "jake@ikit.ru"
         };
 
-        public static List<People> Peoples = new List<People>
-    {
-     new People{Id = Resources.Increment(), Email=emails[0],
-         BirthDate=new DateOnly(2000,1,1),
-         Name = "Kate",
-         Sname = "Sharlock",
-         Role = Roles.First<Role>(r=>r.Name=="Student"),
-         Password = People.getPassHash($"{emails[0]}111"),
-         InternalId = Guid.NewGuid()
-     },
-      new People{Id = Resources.Increment(), Email=emails[1],
-         BirthDate=new DateOnly(2003,10,1),
-         Name = "Василий",
-         Sname = "Петров",
-         Role = Roles.First<Role>(r=>r.Name=="Admin"),
-         Password =  People.getPassHash($"{emails[1]}111"),
-         InternalId = Guid.NewGuid()
-     },
-      new People{Id = Resources.Increment(), Email=emails[2],
-         BirthDate=new DateOnly(2003,10,1),
-         Name = "Иван",
-         Sname = "Смирнов",
-         Role = Roles.First<Role>(r=>r.Name=="Prepod"),
-         Password =  People.getPassHash($"{emails[2]}111"),
-         InternalId = Guid.NewGuid()
-     }
-    };
+    //    public static List<People> Peoples = new List<People>
+    //{
+    // new People{Id = Resources.Increment(), Email=emails[0],
+    //     BirthDate=new DateOnly(2000,1,1),
+    //     Name = "Kate",
+    //     Sname = "Sharlock",
+    //     Role = Roles.First<Role>(r=>r.Name=="Student"),
+    //     Password = People.getPassHash($"{emails[0]}111"),
+    //     InternalId = Guid.NewGuid()
+    // },
+    //  new People{Id = Resources.Increment(), Email=emails[1],
+    //     BirthDate=new DateOnly(2003,10,1),
+    //     Name = "Василий",
+    //     Sname = "Петров",
+    //     Role = Roles.First<Role>(r=>r.Name=="Admin"),
+    //     Password =  People.getPassHash($"{emails[1]}111"),
+    //     InternalId = Guid.NewGuid()
+    // },
+    //  new People{Id = Resources.Increment(), Email=emails[2],
+    //     BirthDate=new DateOnly(2003,10,1),
+    //     Name = "Иван",
+    //     Sname = "Смирнов",
+    //     Role = Roles.First<Role>(r=>r.Name=="Prepod"),
+    //     Password =  People.getPassHash($"{emails[2]}111"),
+    //     InternalId = Guid.NewGuid()
+    // }
+    //};
 
         public static List<People> InitPeoples= new List<People>
     {
