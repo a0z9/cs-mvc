@@ -18,6 +18,8 @@ using WebApp9_cookiee_ef.Services;
 using System.Data;
 using System.Data.Common;
 using WebApp9_cookiee_ef.Entities;
+using Microsoft.EntityFrameworkCore;
+using System.Runtime.Intrinsics.Arm;
 
 namespace WebApp9_cookiee_ef.Controllers
 {
@@ -56,7 +58,7 @@ namespace WebApp9_cookiee_ef.Controllers
 
 
         [Authorize(Roles = "Admin")]
-        public IActionResult Peoples() => View(Resources.Peoples);
+        public IActionResult Peoples() => View(db.Peoples.Include(p=>p.Role).ToList());
         
         [Authorize(Roles = "Admin")]
         public IActionResult People() => View();
@@ -72,13 +74,14 @@ namespace WebApp9_cookiee_ef.Controllers
 
             if (ModelState.IsValid) { 
                 _logger.LogInformation("Model people valid!");
+                db.Attach(people.Role);
                 if (act != "update")
                 {
 
                     people.InternalId = Guid.NewGuid();
                     people.Password = Models.People.getPassHash($"{people.Email}111");
                     
-                    db.Attach(people.Role);
+                    
                     db.Peoples.Add(people);
 
                     await db.SaveChangesAsync();
@@ -94,12 +97,16 @@ namespace WebApp9_cookiee_ef.Controllers
                         peopleOld.Sname = people.Sname;
                         peopleOld.BirthDate = people.BirthDate;
                         peopleOld.Password = Models.People.getPassHash($"{peopleOld.Email}{people.Password}");
+
+                      
                         peopleOld.Role = people.Role;
+                        db.Peoples.Update(peopleOld);
+                        await db.SaveChangesAsync();
                     }
 
                 }
 
-                return View("Peoples", Resources.Peoples); 
+                return View("Peoples", db.Peoples.Include(p=>p.Role).ToList()); 
             }
 
             sb.Append($"errors: {ModelState.ErrorCount}\n");
@@ -168,15 +175,18 @@ namespace WebApp9_cookiee_ef.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult Delete(int id) {
+        public async Task<IActionResult> Delete(int id) {
             
             _logger.LogWarning($"Delete record, id={id}");
-            Models.People people = Resources.Peoples.First(p => p.Id == id);
-         
-            if(people is not null)
-            Resources.Peoples.Remove(people);
+            People people = db.Peoples.First(p => p.Id == id);
 
-            return View(model: Resources.Peoples, viewName: "Peoples");
+            if (people is not null)
+            {
+                db.Peoples.Remove(people);
+                await db.SaveChangesAsync();
+            }
+
+            return View(model: db.Peoples.Include(p => p.Role).ToList(), viewName: "Peoples");
         }
 
 
@@ -185,7 +195,7 @@ namespace WebApp9_cookiee_ef.Controllers
         {
 
             _logger.LogWarning($"Delete record, id={id}");
-            People people = Resources.Peoples.First(p => p.Id == id);
+            People people = db.Peoples.First(p => p.Id == id);
 
             if (people is not null)
             {
@@ -201,9 +211,9 @@ namespace WebApp9_cookiee_ef.Controllers
         {
 
             _logger.LogInformation($"Show record, id={id}");
-            Models.People people = Resources.Peoples.First(p => p.Id == id);
+            People people = db.Peoples.First(p => p.Id == id);
 
-            if (people is not null)   return View(people);
+            if (people is not null)  return View(people);
 
             return Redirect("/");
         }
@@ -216,8 +226,9 @@ namespace WebApp9_cookiee_ef.Controllers
             if (User.Identity.IsAuthenticated) return Redirect("/");
 
             WriteLine($"{email} -- {pass}");
-            // ViewBag.Id = id;
-            People people = Resources.Peoples.FirstOrDefault(x => x.Email == email && x.Password == Models.People.getPassHash($"{email}{pass}"));
+            
+            People people = db.Peoples.Include(p=>p.Role).FirstOrDefault(x => x.Email == email && x.Password == Models.People.getPassHash($"{email}{pass}"));
+                        
             if (people is null) return LocalRedirect("LogonFailed");
 
             var claims = new List<Claim>
