@@ -21,6 +21,7 @@ namespace WebApp9_cookiee_ef.Entities
                 SaveChanges();
             }*/
 
+            Resources.Roles = Roles.ToList();
         }
 
         public DbSet<People> Peoples { get; set; }

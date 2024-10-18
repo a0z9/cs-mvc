@@ -10,13 +10,9 @@ namespace WebApp9_cookiee_ef.Models
         private static int id = 0;
         public static int Increment() => ++id;
 
-        public static List<Role> Roles = new List<Role>() {
-    new Role{Id=1,Name="Abitura"},
-    new Role{Id=2,Name="Student"},
-    new Role{Id=3,Name="Prepod"},
-    new Role{Id=0,Name="Admin"}
-    };
-
+        public static List<Role> Roles = new List<Role>();
+        
+   
         public static List<Role> InitRoles = new List<Role>() {
     new Role{Name="Abitura"},
     new Role{Name="Student"},
